@@ -11,7 +11,7 @@ public class Airport {
     }
 
     public void findFlight(Flight flight) throws RouteNotFoundException {
-        if (flights.get(flight.getArrivalAirport()) == null) {
+        if (!flights.containsKey(flight.getArrivalAirport())) {
             throw new RouteNotFoundException("Nie ma takiego lotu");
         }
         System.out.println(flight.getArrivalAirport() + " " + flights.get(flight.getArrivalAirport()));
