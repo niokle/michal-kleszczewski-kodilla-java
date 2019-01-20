@@ -1,5 +1,6 @@
 package com.kodilla.spring;
 
+import com.kodilla.spring.reader.ReaderConfig;
 import com.kodilla.spring.shape.Shape;
 import org.junit.Assert;
 import org.junit.Test;
@@ -55,5 +56,15 @@ public class SpringRunnerTestSuite {
         String name = shape.getShapeName();
         //Then
         System.out.println("Chosen shape says: " + name);
+    }
+
+    @Test
+    public void testConditional() {
+        //Given
+        ApplicationContext context = new AnnotationConfigApplicationContext(ReaderConfig.class);
+        //When
+        boolean book2Exists = context.containsBean("book2");
+        //Then
+        System.out.println("Bean book2 was found in the container: " + book2Exists);
     }
 }
