@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 public class LibraryTestSuite {
     @Test
-    public void testGetBooksShallowCopy() {
+    public void testGetBooksShallowCopy() throws Exception {
         //given
         Library library = new Library("Moja biblioteka");
         Book book1 = new Book("Tytuł 1", "Autor 1", LocalDate.of(2001, 01, 01));
@@ -21,20 +21,14 @@ public class LibraryTestSuite {
         library.addBook(book3);
         library.addBook(book4);
         library.addBook(book5);
-
-        Library library1 = null;
-        try {
-            library1 = library.shallowCopy();
-        } catch (CloneNotSupportedException exception) {
-            System.out.println(exception);
-        }
+        Library library1 = library.shallowCopy();
         //then
         Assert.assertEquals(5, library.getBooks().size());
         Assert.assertEquals(5, library1.getBooks().size());
     }
 
     @Test
-    public void testGetBooksDeepCopy() {
+    public void testGetBooksDeepCopy() throws Exception {
         //given
         Library library = new Library("Moja biblioteka");
         Book book1 = new Book("Tytuł 1", "Autor 1", LocalDate.of(2001, 01, 01));
@@ -48,13 +42,7 @@ public class LibraryTestSuite {
         library.addBook(book3);
         library.addBook(book4);
         library.addBook(book5);
-
-        Library library1 = null;
-        try {
-            library1 = library.deepCopy();
-        } catch (CloneNotSupportedException exception) {
-            System.out.println(exception);
-        }
+        Library library1 = library.deepCopy();
         //then
         Assert.assertEquals(5, library.getBooks().size());
         Assert.assertEquals(5, library1.getBooks().size());
