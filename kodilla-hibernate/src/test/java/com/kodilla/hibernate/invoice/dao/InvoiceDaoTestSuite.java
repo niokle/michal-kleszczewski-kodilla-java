@@ -55,35 +55,25 @@ public class InvoiceDaoTestSuite {
 
         invoiceDao.save(invoice1);
         int invoice1_id = invoice1.getId();
-        List<Item> itemsInvoice1 = invoice1.getItems();
         invoiceDao.save(invoice2);
         int invoice2_id = invoice2.getId();
-        List<Item> itemsInvoice2 = invoice2.getItems();
 
         int nuberOfItemsForInvoice1 = itemDao.findByInvoice(invoice1).size();
         int nuberOfItemsForInvoice2 = itemDao.findByInvoice(invoice2).size();
 
         //then
-        //Assert.assertEquals(3, nuberOfItemsForInvoice1);
-        //Assert.assertEquals(2, nuberOfItemsForInvoice2);
+        Assert.assertEquals(3, nuberOfItemsForInvoice1);
+        Assert.assertEquals(2, nuberOfItemsForInvoice2);
 
         //cleanUp
-        /*
         try {
             invoiceDao.delete(invoice1_id);
             invoiceDao.delete(invoice2_id);
-            itemsInvoice1.stream()
-                    .map(item -> item.getId())
-                    .forEach(itemDao::delete);
-            itemsInvoice2.stream()
-                    .map(item -> item.getId())
-                    .forEach(itemDao::delete);
             productDao.delete(product1_id);
             productDao.delete(product2_id);
             productDao.delete(product3_id);
         } catch (Exception e) {
 
         }
-        */
     }
 }

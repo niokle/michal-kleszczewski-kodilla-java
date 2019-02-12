@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "INVOICE")
+@Table(name = "invoices")
 public class Invoice {
     private int id;
     private String number;
@@ -18,12 +18,16 @@ public class Invoice {
     public Invoice(String number, List<Item> items) {
         this.number = number;
         this.items = items;
+
+        for (Item item : items) {
+            item.setInvoice(this);
+        }
     }
 
     @Id
     @GeneratedValue
     @NotNull
-    @Column(name = "ID", unique = true)
+    @Column(name = "id", unique = true)
     public int getId() {
         return id;
     }
@@ -32,7 +36,7 @@ public class Invoice {
         this.id = id;
     }
 
-    @Column(name = "NUMBER")
+    @Column(name = "number")
     public String getNumber() {
         return number;
     }
