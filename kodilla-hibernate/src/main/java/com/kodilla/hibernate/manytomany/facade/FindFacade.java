@@ -1,8 +1,11 @@
 package com.kodilla.hibernate.manytomany.facade;
 
 import com.kodilla.hibernate.manytomany.facade.dao.CompanyDaoFacade;
+import com.kodilla.hibernate.manytomany.facade.dao.EmployeeDaoFacade;
 import com.kodilla.hibernate.manytomany.facade.dto.CompanyDto;
+import com.kodilla.hibernate.manytomany.facade.dto.EmployeeDto;
 import com.kodilla.hibernate.manytomany.facade.exception.FindCompanyException;
+import com.kodilla.hibernate.manytomany.facade.exception.FindEmployeeException;
 import com.kodilla.hibernate.manytomany.facade.mapper.FacadeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -13,8 +16,8 @@ import java.util.stream.Collectors;
 @Component
 public class FindFacade {
 
-    //todo
-    //EmployeeDaoFacade employeeDaoFacade;
+    @Autowired
+    EmployeeDaoFacade employeeDaoFacade;
 
     @Autowired
     CompanyDaoFacade companyDaoFacade;
@@ -22,14 +25,11 @@ public class FindFacade {
     @Autowired
     FacadeMapper facadeMapper;
 
-    /*todo
     public List<EmployeeDto> findEmployeeByName(String name) throws FindEmployeeException {
-        return employeeDaoFacade.findEmployeeByLastnameContainsOrFirstnameContains(name).stream()
+        return employeeDaoFacade.findEmployeeByLastnameContainsOrFirstnameContains(name, name).stream()
                 .map(employee -> facadeMapper.EmployeeToEmployeeDto(employee))
                 .collect(Collectors.toList());
     }
-
-     */
 
     public List<CompanyDto> findCompanyByName(String name) throws FindCompanyException {
         return companyDaoFacade.findCompanyByNameContains(name).stream()

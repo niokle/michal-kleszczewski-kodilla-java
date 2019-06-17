@@ -12,11 +12,11 @@ import java.util.List;
 
 @Transactional
 @Repository
-@NamedQuery(name="Employee.findByName", query="SELECT * FROM employees WHERE firstname LIKE '%' + :ARG + '%'")
-//@NamedQuery(name = "Employee.findByName", query = "SELECT * FROM employees WHERE CONCAT(firstname, lastname) LIKE '%' + :ARG + '%'")
+@NamedQuery(name = "Employee.findByName", query = "SELECT * FROM employees WHERE firstname LIKE '%' + :ARG + '%' OR lastname LIKE '%' + :ARG + '%'")
 public interface EmployeeDaoFacade extends CrudRepository<Employee, Integer> {
-    List<Employee> findEmployeeByLastnameContainsOrFirstnameContains(@Param("ARG") String containsChars);
+    List<Employee> findEmployeeByLastnameContainsOrFirstnameContains(@Param("ARG") String lastNameContainsChars, @Param("ARG") String firstNameContainsChars);
 }
+
 
 
 
