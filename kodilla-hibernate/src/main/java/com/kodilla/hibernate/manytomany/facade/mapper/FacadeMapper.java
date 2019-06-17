@@ -11,12 +11,20 @@ import java.util.stream.Collectors;
 
 @Component
 public class FacadeMapper {
-    public EmployeeDto EmployeeToEmployeeDto(Employee employee) {
-        return new EmployeeDto(employee.getId(), employee.getFirstname(), employee.getLastname(), ListCompanyToListCompanyDto(employee.getCompanies()));
-    }
 
     public CompanyDto CompanyToCompanyDto(Company company) {
         return new CompanyDto(company.getId(), company.getName(), ListEmployeeToListEmployeeDto(company.getEmployees()));
+    }
+
+    public List<CompanyDto> ListCompanyToListCompanyDto(List<Company> companies) {
+        return companies.stream()
+                .map(company -> new CompanyDto(company.getId(), company.getName(),
+                        ListEmployeeToListEmployeeDto(company.getEmployees())))
+                .collect(Collectors.toList());
+    }
+
+    public EmployeeDto EmployeeToEmployeeDto(Employee employee) {
+        return new EmployeeDto(employee.getId(), employee.getFirstname(), employee.getLastname(), ListCompanyToListCompanyDto(employee.getCompanies()));
     }
 
     public List<EmployeeDto> ListEmployeeToListEmployeeDto(List<Employee> employees) {
@@ -26,10 +34,4 @@ public class FacadeMapper {
                 .collect(Collectors.toList());
     }
 
-    public List<CompanyDto> ListCompanyToListCompanyDto(List<Company> companies) {
-        return companies.stream()
-                .map(company -> new CompanyDto(company.getId(), company.getName(),
-                        ListEmployeeToListEmployeeDto(company.getEmployees())))
-                .collect(Collectors.toList());
-    }
 }

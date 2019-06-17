@@ -1,13 +1,10 @@
 package com.kodilla.hibernate.manytomany.facade;
 
 import com.kodilla.hibernate.manytomany.Company;
-import com.kodilla.hibernate.manytomany.Employee;
 import com.kodilla.hibernate.manytomany.dao.CompanyDao;
 import com.kodilla.hibernate.manytomany.dao.EmployeeDao;
 import com.kodilla.hibernate.manytomany.facade.dto.CompanyDto;
-import com.kodilla.hibernate.manytomany.facade.dto.EmployeeDto;
 import com.kodilla.hibernate.manytomany.facade.exception.FindCompanyException;
-import com.kodilla.hibernate.manytomany.facade.exception.FindEmployeeException;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,6 +27,7 @@ public class FindFacadeTest {
     @Autowired
     EmployeeDao employeeDao;
 
+/*
     @Test
     public void findEmployeeByName() throws FindEmployeeException {
         //given
@@ -74,7 +72,7 @@ public class FindFacadeTest {
         employeeDao.delete(employee8);
         employeeDao.delete(employee9);
     }
-
+*/
     @Test
     public void findCompanyByName() throws FindCompanyException {
         //given
@@ -105,8 +103,8 @@ public class FindFacadeTest {
 
         //then
         Assert.assertEquals(3, companies1.size());
-        Assert.assertEquals(3, companies1.size());
-        Assert.assertEquals(4, companies1.size());
+        Assert.assertEquals(2, companies2.size());
+        Assert.assertEquals(5, companies3.size());
 
         //cleanup
         companyDao.delete(company1);
@@ -119,4 +117,6 @@ public class FindFacadeTest {
         companyDao.delete(company8);
         companyDao.delete(company9);
     }
+
+
 }
